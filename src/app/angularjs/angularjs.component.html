@@ -1,0 +1,204 @@
+<div class="container topPadding">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Difference between Post link and link function
+
+</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <ul>
+              <li>
+                <p>Using the preLink() and postLink() functions within compile() allows you more control over when the linking
+                  function is called.
+                  <p>
+              </li>
+              <li>
+                <p>link() acts a shorthand for postLink()</p>
+              </li>
+              <li>
+                <p>In most cases, you would typically use link() over postLink() where all that is needed is basic DOM manipulation
+                  (very common). If, for example you needed to manipulate the model or $scope before it is linked with the
+                  view, the preLink() function is where you can do that.</p>
+              </li>
+              <li>
+                <p>It is worth noting though, that typically any issues that preLink tries to solve can typically be resolved
+                  by a parent controller and should be encouraged.</p>
+              </li>
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">$digest and $apply</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <p>It’s the $digest cycle where the watchers are fired. When a watcher is fired, AngularJS evaluates the scope model,
+              and if it has changed then the corresponding listener function is called. So, our next question is when and
+              how this $digest cycle starts.</p>
+            <p>The $digest cycle starts as a result of a call to $scope.$digest(). Assume that you change a scope model in a
+              handler function through the ng-click directive. In that case AngularJS automatically triggers a $digest cycle
+              by calling $digest(). When the $digest cycle starts, it fires each of the watchers. These watchers check if
+              the current value of the scope model is different from last calculated value. If yes, then the corresponding
+              listener function executes. As a result if you have any expressions in the view they will be updated. In addition
+              to ng-click, there are several other built-in directives/services that let you change models (e.g. ng-model,
+              $timeout, etc) and automatically trigger a $digest cycle.</p>
+            <p>Angular doesn’t directly call $digest(). Instead, it calls $scope.$apply(), which in turn calls $rootScope.$digest().
+              As a result of this, a digest cycle starts at the $rootScope, and subsequently visits all the child scopes
+              calling the watchers along the way</p>
+            <h3>When Do You Call $apply() Manually?</h3>
+            <p>AngularJS will account for only those model changes which are done inside AngularJS’ context (i.e. the code that
+              changes models is wrapped inside $apply()).</p>
+            <p>However, if you change any model outside of the Angular context, then you need to inform Angular of the changes
+              by calling $apply() manually. It’s like telling Angular that you are changing some models and it should fire
+              the watchers so that your changes propagate properly.</p>
+            <p>For example, if you use JavaScript’s setTimeout() function to update a scope model, Angular has no way of knowing
+              what you might change. In this case it’s your responsibility to call $apply() manually, which triggers a $digest
+              cycle. Similarly, if you have a directive that sets up a DOM event listener and changes some models inside
+              the handler function, you need to call $apply() to ensure the changes take effect.</p>
+            <h3>How Many Times Does the $digest Loop Run?</h3>
+            <p>When a $digest cycle runs, the watchers are executed to see if the scope models have changed. If they have, then
+              the corresponding listener functions are called. This leads to an important question. What if a listener function
+              itself changed a scope model? How would AngularJS account for that change?</p>
+            <p>The answer is that the $digest loop doesn’t run just once. At the end of the current loop, it starts all over
+              again to check if any of the models have changed. This is basically dirty checking, and is done to account
+              for any model changes that might have been done by listener functions. So, the $digest cycle keeps looping
+              until there are no more model changes, or it hits the max loop count of 10. It’s always good to stay idempotent
+              and try to minimize model changes inside the listener functions.
+            </p>
+            <p>Note: At a minimum, $digest will run twice even if your listener functions don’t change any models. As discussed
+              above, it runs once more to make sure the models are stable and there are no changes
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Different types of directive scopes</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <h3>Scope : False</h3>
+            <iframe width="100%" height="300" src="//jsfiddle.net/rajeevrth/eyNYw/1001/embedded/js,html,css,result/dark/" allowfullscreen="allowfullscreen"
+              frameborder="0"></iframe>
+            <p>If we change the name inside the textbox, notice the header name also gets changed. Since there’s no scope provided
+              in the DDO, the directive uses its parent scope. Therefore, any changes we make inside the directive are actually
+              reflected in the parent scope. Similarly, parent Ctrl1 scope has a method to reverse the name and this gets
+              triggered when we click on the header. Now as we expect, clicking on the header should reverse the name inside
+              the directive too.</p>
+            <h3>Scope : True</h3>
+            <iframe width="100%" height="300" src="//jsfiddle.net/shidhincr/q3kex/3/embedded/js,html,css,result/dark/?bodyColor=414956&fontColor=white"
+              allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <p>When scope is set to “true”, AngularJS will create a new scope by inheriting parent scope ( usually controller
+              scope, otherwise the application’s rootScope ). Any changes made to this new scope will not reflect back to
+              the parent scope. However, since the new scope is inherited from the parent scope, any changes made in the
+              Ctrl1 ( the parent scope ) will be reflected in the directive scope.</p>
+            <h3>Scope :( Directive gets a new isolated scope )</h3>
+            <iframe width="100%" height="300" src="//jsfiddle.net/rajeevrth/rp37hhd4/embedded/js,html,css,result/dark/" allowfullscreen="allowfullscreen"
+              frameborder="0"></iframe>
+            <p>We just created a directive with an isolated scope. Notice, even the parent scope has a name "Kumar", the textbox
+              inside directive is blank. This is because of the new Isolated scope doesn’t know anything about its parent
+              scope.
+            </p>
+            <h4>But, can we pass some values from the parent scope to the directives now?</h4>
+            <img src="/src/images/ang1.png" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Promise In Angularjs- $q Service</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <h3>Scope : False</h3>
+            <iframe width="100%" height="300" src="//jsfiddle.net/rajeevrth/eyNYw/1001/embedded/js,html,css,result/dark/" allowfullscreen="allowfullscreen"
+              frameborder="0"></iframe>
+            <p>If we change the name inside the textbox, notice the header name also gets changed. Since there’s no scope provided
+              in the DDO, the directive uses its parent scope. Therefore, any changes we make inside the directive are actually
+              reflected in the parent scope. Similarly, parent Ctrl1 scope has a method to reverse the name and this gets
+              triggered when we click on the header. Now as we expect, clicking on the header should reverse the name inside
+              the directive too.</p>
+            <h3>Scope : True</h3>
+            <iframe width="100%" height="300" src="//jsfiddle.net/shidhincr/q3kex/3/embedded/js,html,css,result/dark/?bodyColor=414956&fontColor=white"
+              allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <p>When scope is set to “true”, AngularJS will create a new scope by inheriting parent scope ( usually controller
+              scope, otherwise the application’s rootScope ). Any changes made to this new scope will not reflect back to
+              the parent scope. However, since the new scope is inherited from the parent scope, any changes made in the
+              Ctrl1 ( the parent scope ) will be reflected in the directive scope.</p>
+            <h3>Scope :( Directive gets a new isolated scope )</h3>
+            <iframe width="100%" height="300" src="//jsfiddle.net/rajeevrth/rp37hhd4/embedded/js,html,css,result/dark/" allowfullscreen="allowfullscreen"
+              frameborder="0"></iframe>
+            <p>We just created a directive with an isolated scope. Notice, even the parent scope has a name "Kumar", the textbox
+              inside directive is blank. This is because of the new Isolated scope doesn’t know anything about its parent
+              scope.
+            </p>
+            <h4>But, can we pass some values from the parent scope to the directives now?</h4>
+            <img src="/src/images/ang1.png" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">NgModelController</a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <p>NgModelController provides API for the ngModel directive. The controller contains services for data-binding,
+              validation, CSS updates, and value formatting and parsing. It purposefully does not contain any logic which
+              deals with DOM rendering or listening to DOM events. Such DOM related logic should be provided by other directives
+              which make use of NgModelController for data-binding to control elements. AngularJS provides this DOM logic
+              for most input elements. </p>
+            <h3>Methods</h3>
+            <iframe width="100%" height="300" src="//jsfiddle.net/shidhincr/q3kex/3/embedded/js,html,css,result/dark/?bodyColor=414956&fontColor=white"
+              allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <p>When scope is set to “true”, AngularJS will create a new scope by inheriting parent scope ( usually controller
+              scope, otherwise the application’s rootScope ). Any changes made to this new scope will not reflect back to
+              the parent scope. However, since the new scope is inherited from the parent scope, any changes made in the
+              Ctrl1 ( the parent scope ) will be reflected in the directive scope.</p>
+            <h3>Scope :( Directive gets a new isolated scope )</h3>
+            <iframe width="100%" height="300" src="//jsfiddle.net/rajeevrth/rp37hhd4/embedded/js,html,css,result/dark/" allowfullscreen="allowfullscreen"
+              frameborder="0"></iframe>
+            <p>We just created a directive with an isolated scope. Notice, even the parent scope has a name "Kumar", the textbox
+              inside directive is blank. This is because of the new Isolated scope doesn’t know anything about its parent
+              scope.
+            </p>
+            <h4>But, can we pass some values from the parent scope to the directives now?</h4>
+            <img src="/src/images/ang1.png" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

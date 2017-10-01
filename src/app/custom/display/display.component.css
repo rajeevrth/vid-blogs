@@ -1,0 +1,10 @@
+.h3, h3 {
+    font-size: 18px !important;
+    
+}
+hr
+{
+        width: 500px;
+    margin-left: 0;
+         box-shadow: 1px 1px red;
+}

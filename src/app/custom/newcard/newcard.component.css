@@ -1,0 +1,30 @@
+body
+{
+    overflow-x: hidden;
+}
+.customContainer
+{
+       padding: 20px;
+    width: 36%;
+    margin-left: 14%;
+}
+@media screen and (min-width:990px)
+{
+.displayStyler
+{
+    position:absolute;
+    top:8%;
+    left:50%;
+}
+.threedDiv
+{
+    width: 600px;
+    height: 300px;
+    padding: 15px;
+    background-color: #4CAF50;
+    box-shadow: 10px 10px grey;
+    color:white;
+}
+
+}
+

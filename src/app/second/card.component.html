@@ -1,0 +1,8 @@
+<div class="col-md-12" [hidden]="hideList">
+<li *ngFor="let card of Cards" class="col-md-3" (click)="viewCardDetail(card)">{{card.CardName}}</li>
+</div>
+<div [hidden]="!hideList">
+   <transaction-app [cardId]="cardId" [cardNumber]="cardNumber" [cardName]="cardName" [cardLimit]="cardLimit"></transaction-app> 
+</div>
+
+<router-outlet></router-outlet>

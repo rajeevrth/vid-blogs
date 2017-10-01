@@ -1,0 +1,35 @@
+.panel {
+    border: 0px;
+  }
+  
+  .panel-default>.panel-heading {
+    color: #bbc1cc;
+    background-color: #133973;
+    border-color: #ddd;
+  }
+  
+  .panel-default {
+    background-color: #ffffff;
+    color: #333;
+  }
+  
+  .panel-group {
+    box-shadow: 1px 1px 10px 10px grey;
+  }
+  
+  .topPadding {
+    padding: 1%;
+  }
+  a:focus, a:hover
+  {
+    text-decoration: none !important;
+  }
+   p
+  {
+      font-size:18px;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  }
+   a
+  {
+      font-weight: bold;
+  }

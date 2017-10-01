@@ -1,0 +1,239 @@
+<div class="container topPadding">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Value and Reference Types</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <ul>
+              <li>
+                <p>Value types are stored in the program execution stack and directly contain their value.</p>
+              </li>
+              <li>
+                <p>Value types are the primitive numeric types, the character type and the Boolean type</p>
+              </li>
+              <li>
+                <p>The memory allocated for them is released when the program exits their range, i.e. when the block of code
+                  in which they are defined completes its execution. For example, a variable declared in the method Main()
+                  of the program is stored in the stack until the program completes execution of this method, i.e. until
+                  it finishes (C# programs terminate after fully executing the Main() method).</p>
+              </li>
+              <li>
+                <p>Reference types allocate dynamic memory for their creation. They also release some dynamic memory for a memory
+                  cleaning (garbage collector), when it is no longer used by the program. It is unknown exactly when a given
+                  reference variable will be released of the garbage collector as this depends on the memory load and other
+                  factors. Since the allocation and release of memory is a slow operation, it can be said that the reference
+                  types are slower than the value ones.</p>
+              </li>
+              <li>
+                <p>As reference data types are allocated and released dynamically during program execution, their size might
+                  not be known in advance. For example, a variable of type string can contain text data which varies in length.
+                  Actually the string text value is stored in the dynamic memory and can occupy a different volume (count
+                  of bytes) while the string variable stores the address of the text value.</p>
+              </li>
+              <li>
+                <p>As reference data types are allocated and released dynamically during program execution, their size might
+                  not be known in advance. For example, a variable of type string can contain text data which varies in length.
+                  Actually the string text value is stored in the dynamic memory and can occupy a different volume (count
+                  of bytes) while the string variable stores the address of the text value.</p>
+              </li>
+            </ul>
+            <img src="/src/images/oops1.png" alt="">
+            <img src="/src/images/oops2.png" alt="">
+            <img src="/src/images/oops3.png" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">What is Boxing and Unboxing?</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <p>Boxing is the process of converting a value type to the type object . When the CLR boxes a value type, it wraps
+              the value inside a System.Object and stores it on the managed heap. </p>
+            <img src="/src/images/box1.png" alt="">
+            <img src="/src/images/box2.png" alt="">
+            <p>Unboxing extracts the value type from the object. Boxing is implicit; unboxing is explicit</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">What is the difference between a struct and a class in C#?</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <img src="/src/images/struct1.png" alt="">
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Abstract Class</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <img src="/src/images/abst1.png" alt="">
+            <img src="/src/images/abst2.png" alt="">
+            <img src="/src/images/abst3.png" alt="">
+            <img src="/src/images/abst4.png" alt="">
+            <img src="/src/images/abst5.png" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Continue Vs Break</a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <p>Using break statement, you can 'jump out of a loop' whereas by using continue statement, you can 'jump over one
+              iteration' and then resume your loop execution</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">constant Vs readonly</a>
+        </h4>
+      </div>
+      <div id="collapse6" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <img src="/src/images/const1.png" alt="">
+            <img src="/src/images/const2.png" alt="">
+            <img src="/src/images/const3.png" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">ref Vs out</a>
+        </h4>
+      </div>
+      <div id="collapse7" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <img src="/src/images/ref1.png" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">"this" in static method</a>
+        </h4>
+      </div>
+      <div id="collapse8" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <p>We can't use this in static method because keyword 'this' returns a reference to the current instance of the
+              class containing it. Static methods (or any static member) do not belong to a particular instance. They exist
+              without creating an instance of the class and call with the name of a class not by instance so we can’t use
+              this keyword in the body of static Methods, but in case of Extension Methods we can use it the functions parameters.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">extension method </a>
+        </h4>
+      </div>
+      <div id="collapse9" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <p>Extension methods enable you to add methods to existing types without creating a new derived type, recompiling,
+              or otherwise modifying the original type. An extension method is a special kind of static method, but they
+              are called as if they were instance methods on the extended type.
+            </p>
+            <img src="/src/images/ext1.png" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">partial class</a>
+        </h4>
+      </div>
+      <div id="collapse9" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <p>A partial class is only use to splits the definition of a class in two or more classes in a same source code
+              file or more than one source files. You can create a class definition in multiple files but it will be compiled
+              as one class at run time and also when you’ll create an instance of this class so you can access all the methods
+              from all source file with a same object.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse10">IEnumerable </a>
+        </h4>
+      </div>
+      <div id="collapse10" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <p>A partial class is only use to splits the definition of a class in two or more classes in a same source code
+              file or more than one source files. You can create a class definition in multiple files but it will be compiled
+              as one class at run time and also when you’ll create an instance of this class so you can access all the methods
+              from all source file with a same object.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

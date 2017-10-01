@@ -1,0 +1,57 @@
+<!--<form (ngSubmit)="onSubmit()" #customForm="ngForm">
+    <div class="form-group">
+        <ul class="form-style-1">
+
+            <li><label>Full Name <span class="required">*</span></label><input type="text" name="field1" class="field-divided"
+                    id="name" name="name" [(ngModel)]="mydetails.firstName" #name="ngModel" required/>&nbsp;<input type="text"
+                    name="field2" class="field-divided" [(ngModel)]="mydetails.lastName" /></li>
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                Name is required
+            </div>
+            <li>
+                <label>Email <span class="required">*</span></label>
+                <input type="email" name="field3" class="field-long" [(ngModel)]="mydetails.email" />
+            </li>
+            <li>
+                <label>Manager</label>
+                <select name="field4" class="field-select" [(ngModel)]="mydetails.selectedValue">
+                <option *ngFor="let emp of employeeList"  value={{emp.name}}>{{emp.name}}</option>
+        </select>
+            </li>
+            <li>
+                <label>Your Message <span class="required">*</span></label>
+                <textarea name="field5" id="field5" class="field-long field-textarea" [(ngModel)]="mydetails.message"></textarea>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-success" [disabled]="!customForm.form.valid" (click)="goToSecondPage()">Submit</button>
+            </li>
+        </ul>
+    </div>
+</form>-->
+<div class="container">
+    <div class="col-md-6">
+        <button type="button" class="btn btn-success customBtnStyle" routerLink='newcard' routerLinkActive="active">Add Card</button>
+        <button type="button" class="btn btn-danger customBtnStyle" routerLink="/cards" routerLinkActive="active">View Cards</button>
+    </div>
+    <div class="col-nd-6">
+
+    </div>
+    <div class="container customContainer">
+
+    </div>
+    <!--<div class="col-md-6">
+        <li *ngFor="let card of Cards">
+           {{card.CardName}}
+           </li>
+    </div>-->
+</div>
+<router-outlet></router-outlet>
+<style>
+    .no-style .ng-valid {
+        border-left: 1px solid #CCC
+    }
+    
+    .no-style .ng-invalid {
+        border-left: 1px solid #CCC
+    }
+</style>

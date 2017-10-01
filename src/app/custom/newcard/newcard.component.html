@@ -1,0 +1,21 @@
+<form>
+    <div class="container customContainer">
+        <div class="form-group">
+            <label for="email">Card Name:</label>
+            <input type="text" class="form-control" id="cardName" [(ngModel)]="cardToSave.CardName" name="cardName" maxlength="20">
+        </div>
+        <div class="form-group">
+            <label for="CardNumber">Card Number - Last 4 Digit</label>
+            <input type="number" class="form-control" id="CardNumber" name="CardNumber" [(ngModel)]="cardToSave.CardNumber" >
+        </div>
+        <div class="form-group">
+            <label for="CardLimit">Card Limit</label>
+            <input type="number" class="form-control" id="CardLimit" name="CardLimit" [(ngModel)]="cardToSave.CardLimit">
+        </div>
+         <button type="submit" class="btn btn-success" (click)="newMinor()" >Submit</button>
+    </div>
+</form>
+<div class="displayStyler threedDiv">
+<display-app [cardName]="cardToSave.CardName" [cardLimit]="cardToSave.CardNumber" [newcardName]="newcardName" [newcardLimit]="newcardLimit"></display-app>
+</div>
+<router-outlet></router-outlet>

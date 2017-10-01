@@ -1,0 +1,81 @@
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{cardName}}-{{cardNumber}}</h4>
+            </div>
+            <div class="modal-body">
+                <p for="transDate">Card Limit: {{monthlyDetails.CardLimit}}</p>
+                <p for="transDate">Available Balance: {{monthlyDetails.AvailableBalance}}</p>
+                <p for="transDate">Interest Rate:{{monthlyDetails.InterestRate}}%</p>
+                <p for="transDate">Total Credit: {{monthlyDetails.TotalCredit}}</p>
+                <p for="transDate">Total Debit: {{monthlyDetails.TotalDebit}}</p>
+                <p for="transDate">Remaining Balance: {{monthlyDetails.RemainingBalance}}</p>
+                <p for="transDate">Due Date: </p>
+                <p for="transDate">Minimum Balance Pay:</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="form-group">
+    <label class="boxView">{{cardName}}-{{cardNumber}}</label>
+</div>
+<div class="container">
+    <form role="form">
+
+        <div class="form-group">
+            <label for="transDate">Transaction Date:</label>
+            <input type="datetime-local" class="form-control" id="transDate" [(ngModel)]="transDate" name="transDate">
+        </div>
+        <div class="form-group">
+            <label for="transAmt">Transaction Amount:</label>
+            <input type="number" class="form-control" id="transAmt" [(ngModel)]="transAmt" name="transAmt">
+
+        </div>
+        <div class="form-group">
+            <label for="transType">Credit/Debit:</label>
+            <select class="form-control" id="transType" [(ngModel)]="transType" name="transType">
+  <option value="Credit">Credit</option>
+  <option value="Debit">Debit</option>
+</select>
+
+
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <input type="text" class="form-control" id="comment" [(ngModel)]="comment" name="comment">
+
+        </div>
+        <button type="submit" class="btn btn-success" (click)="saveTransaction()">Save</button>
+        <button type="submit" class="btn btn-danger" (click)="fetchTransaction()">Transactions</button>
+        <div [hidden]="viewMonthRecord" class="pull-right">
+            <button type="submit" class="btn btn-danger" (click)="monthlyDetail()" data-toggle="modal" data-target="#myModal">Monthly Detail</button>
+        </div>
+
+    </form>
+</div>
+
+<div class="container">
+    <li *ngFor="let trans of fetchedTransaction"><label>{{trans.Date}}</label><label class="col-md-offset-3">{{trans.Comment}}</label><label class="col-md-offset-3">{{trans.TransType}}</label><label class="pull-right">{{trans.Amount}}</label></li>
+
+
+</div>
+<style>
+    .boxView {
+        width: 13%;
+        position: absolute;
+        border: #f3f6f7 solid;
+        padding: 2%;
+        /* float: right; */
+        background-color: black;
+        color: white;
+        box-shadow: 1px 1px 1px 1px;
+    }
+</style>

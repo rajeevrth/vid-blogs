@@ -1,0 +1,23 @@
+li{
+list-style: none;
+    border: #859285 solid;
+    color: #111113;
+    position: relative;
+    font-size: large;
+    padding: 2%;
+    margin: 1%;
+    background-color: #1f8879;
+    cursor: pointer;
+        box-shadow: 1px 1px 1px grey;
+}
+
+.boxView{
+position: absolute;
+    border: #f3f6f7 solid;
+    padding: 70px;
+    /* float: right; */
+    margin-left: 1%;
+    background-color: black;
+    color: white;
+    box-shadow: 1px 1px 1px 1px;
+}
